@@ -9,6 +9,8 @@ public class NextLevel : MonoBehaviour
 
     public void Mudar()
     {
-            SceneManager.LoadScene(levelName);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(levelName);
+   
     }
 }

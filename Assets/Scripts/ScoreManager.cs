@@ -1,21 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public Text scoreText;
-    public static int scoreCount;
-    // Start is called before the first frame update
+    public Text maiorScoreText;
+    private static int maiorScore;
+
+    public static int scoreCountEasy;
+
+    public Text scoreTextMedium;
+    public static int scoreCountMedium;
+
+    public Text scoreTextHard;
+    public static int scoreCountHard;
+
+
     void Start()
     {
-        
+        // Recupere o maior score salvo em PlayerPrefs
+        maiorScore = PlayerPrefs.GetInt("MaiorScore", 0);
     }
 
-    // Update is called once per frame
+    // Método estático para atualizar o maior score
+    public static void AtualizarMaiorScore(int novoScore)
+    {
+        if (novoScore > maiorScore)
+        {
+            maiorScore = novoScore;
+
+            // Salve o novo maior score em PlayerPrefs
+            PlayerPrefs.SetInt("MaiorScore", maiorScore);
+            PlayerPrefs.Save();
+        }
+    }
+
     void Update()
     {
-        scoreText.text = "Score: " + Mathf.Round(scoreCount); 
+        maiorScoreText.text = "Maior Score: " + Mathf.Round(maiorScore);
     }
 }
+
